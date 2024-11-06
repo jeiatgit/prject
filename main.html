@@ -4,123 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coconut Disease Detection</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Inline CSS for demonstration purposes */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        #results {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Coconut Disease Detection for Farmers</h1>
-        <nav>
-            <ul>
-                <li><a href="#disease-identification">Disease Identification</a></li>
-                <li><a href="#solutions">Solutions & Treatment</a></li>
-                <li><a href="#farmers-guide">Farmer’s Guide</a></li>
-                <li><a href="#contact-support">Contact Support</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="logo">
+                <img src="assets/coconut_logo.png" alt="Coconut Logo" style="margin-bottom: 4;">
+                <h1>CocoMe</h1>
+            </div>
+        </div>
     </header>
 
     <main>
-        <section id="intro">
-            <h2>Quick Intro</h2>
-            <p>This website helps farmers identify and treat diseases affecting coconut trees. Our tool analyzes uploaded photos to detect diseases and provides tailored recommendations.</p>
-        </section>
-
-        <section id="disease-identification">
-            <h2>Disease Identification Tool</h2>
-            <p>Upload a photo of your coconut tree to identify any diseases.</p>
-            <input type="file" accept="image/*" id="imageUpload">
-            <button id="analyzeButton">Analyze</button>
-            <div id="results">
-                <h3>Detection Results:</h3>
-                <p id="diseaseName"></p>
-                <p id="confidenceScore"></p>
+        <div class="upload-section">
+            <div class="left-panel">
+                <h2>Coconut Disease Detection Tool</h2>
+                <p class="tool-description">
+                    Upload a photo of your coconut tree to instantly identify potential diseases. 
+                    Our AI-powered tool will analyze the image and provide detailed insights about:
+                </p>
+                <ul class="feature-list">
+                    <li>Disease identification</li>
+                    <li>Treatment recommendations</li>
+                </ul>
+                <div class="button-group">
+                    <label for="imageUpload" class="custom-file-input">Upload Image</label>
+                    <button id="analyzeButton" class="custom-file-input" style="display: none;">Analyze</button>
+                </div>
+                <input type="file" accept="image/*" id="imageUpload">
             </div>
-        </section>
-
-        <section id="solutions">
-            <h2>Treatment & Medication Recommendations</h2>
-            <p>Get recommendations based on the detected disease.</p>
-        </section>
-
-        <section id="farmers-guide">
-            <h2>Community & Farmer’s Guide</h2>
-            <p>Read stories from other farmers and access expert articles.</p>
-        </section>
+            
+            <div class="right-panel">
+                <div id="dropZone">
+                    <div id="imagePreview" style="display: none;">
+                        <img id="selectedImage" src="#" alt="Selected image">
+                    </div>
+                    <div class="placeholder-text">
+                        <span class="plus-icon">+</span>
+                        <p>Drop your image here</p>
+                        <p class="sub-text">or click Upload Image button</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="results-section" id="results" style="display: none;">
+            <div class="left-panel">
+                <h2>Analysis Results</h2>
+                <div class="segmented-image">
+                    <img id="segmentedImage" src="assets/mask_placeholder.png" alt="Segmented Analysis">
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="result-item">
+                    <h3>Detected Disease</h3>
+                    <p id="diseaseName" class="result-value"></p>
+                </div>
+                <div class="result-item">
+                    <h3>Confidence Score</h3>
+                    <p id="confidenceScore" class="result-value"></p>
+                </div>
+                <div class="treatment-info">
+                    <h3>Recommended Treatment</h3>
+                    <p id="treatmentInfo">Loading treatment information...</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="resultsContainer">
+            <!-- Result cards will be appended here -->
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2023 Coconut Disease Detection. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.getElementById('analyzeButton').addEventListener('click', function() {
-            const imageUpload = document.getElementById('imageUpload');
-            
-            if (imageUpload.files.length === 0) {
-                alert('Please upload an image.');
-                return;
-            }
-
-            // Simulate analysis result
-            const resultsDiv = document.getElementById('results');
-            const diseaseName = document.getElementById('diseaseName');
-            const confidenceScore = document.getElementById('confidenceScore');
-
-            // Simulated results (you would replace this with actual analysis)
-            diseaseName.textContent = 'Detected Disease: Coconut Leaf Wilt';
-            confidenceScore.textContent = 'Confidence Score: 85%';
-
-            // Show results
-            resultsDiv.style.display = 'block';
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
